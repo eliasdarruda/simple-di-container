@@ -1,0 +1,43 @@
+{
+  "name": "simple-di-container",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "index.ts",
+      "src"
+    ],
+    "exec": "npm start",
+    "ext": "ts"
+  },
+  "scripts": {
+    "start": "node --inspect=5858 -r ts-node/register ./index.ts",
+    "start:watch": "nodemon",
+    "build": "tsc",
+    "test": "mocha -r ts-node/register test/**/*.spec.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.2.5",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.14",
+    "chai": "^4.2.0",
+    "eslint": "^6.7.1",
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.2",
+    "nodemon": "^2.0.1",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.1.13"
+  }
+}
