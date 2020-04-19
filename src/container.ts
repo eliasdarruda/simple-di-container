@@ -70,13 +70,7 @@ export class Container {
 
     this.instantiate(classRef as (new (...args: any[]) => Injection), isAlias ? name as string : null);
 
-    const subject = this.instances[classRef.name] as T;
-
-    if (!subject) {
-      console.warn(`Avoid circular dependencies: (${classRef.name})`);
-    }
-
-    return subject;
+    return this.instances[classRef.name] as T;
   }
 
   private instantiate(Instance: new (...args: any[]) => Injection, alias?: string) {
