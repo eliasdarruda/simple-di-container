@@ -24,8 +24,11 @@
     "test": "mocha -r ts-node/register test/**/*.spec.ts",
     "test-coverage": "nyc --reporter=text mocha -r ts-node/register test/**/*.spec.ts"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "eliasdarruda",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "devDependencies": {
     "@types/chai": "^4.2.5",
     "@types/mocha": "^5.2.7",
