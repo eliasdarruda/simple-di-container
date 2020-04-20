@@ -1,6 +1,6 @@
 # Super simple DI framework and IoC with containers
 
-Soon on npm package
+npm install ts-di-container --save
 
 ## Usage example
 

@@ -1,7 +1,7 @@
 {
-  "name": "simple-di-container",
-  "version": "0.0.1",
-  "description": "",
+  "name": "ts-di-container",
+  "version": "1.0.0",
+  "description": "Very simple dependency injection and IoC framework for Typescript",
   "main": "index.js",
   "nodemonConfig": {
     "ignore": [
