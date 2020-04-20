@@ -18,14 +18,14 @@ export function dep(alias?: string) {
     parameterIndex: number
   ) {
     if (propertyKey) {
-      throw new Error('Should be used only in constructor args');
+      throw new Error('[STRUCTURAL ERROR] Should be used only in constructor args');
     }
 
     const aliasInjection = { name: alias, alias: true } as AliasInjection;
     const inject = alias ? aliasInjection : Reflect.getMetadata('design:paramtypes', target)[parameterIndex];
 
     if (!Object.is(aliasInjection, inject) && inject && Reflect.has(inject, 'isExtensible')) {
-      throw new Error(`You can't inject interfaces without an ALIAS`);
+      throw new Error(`[INJECTION ERROR] You can't inject interfaces or objects without an ALIAS`);
     }
 
     let injects = Reflect.getOwnMetadata(CLASS_INJECTS, target) || [];

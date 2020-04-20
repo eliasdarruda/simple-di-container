@@ -1,6 +1,7 @@
 import { injectable, dep } from '../../src/dependency-decorator';
 import { RecursiveOne } from './recursive';
 
+export class NotInjectable {}
 @injectable
 export abstract class GenericClass implements Generic {
   protected uniqueInstanceKey: string;
@@ -13,8 +14,6 @@ export abstract class GenericClass implements Generic {
     return this.uniqueInstanceKey;
   }
 }
-
-
 @injectable
 export class SomeOtherClass extends GenericClass {
   static instanceKey = 'SOMEOTHERCLASS';

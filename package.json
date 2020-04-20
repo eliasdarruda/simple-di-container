@@ -21,7 +21,8 @@
     "start": "node --inspect=5858 -r ts-node/register ./index.ts",
     "start:watch": "nodemon",
     "build": "tsc",
-    "test": "mocha -r ts-node/register test/**/*.spec.ts"
+    "test": "mocha -r ts-node/register test/**/*.spec.ts",
+    "test-coverage": "nyc --reporter=text mocha -r ts-node/register test/**/*.spec.ts"
   },
   "author": "",
   "license": "ISC",
@@ -34,6 +35,7 @@
     "eslint-plugin-import": "^2.18.2",
     "mocha": "^6.2.2",
     "nodemon": "^2.0.1",
+    "nyc": "^15.0.1",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.2"
   },

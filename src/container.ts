@@ -53,27 +53,18 @@ export class Container {
   }
 
   get<T>(name: Function | string): T {
-    let classRef: Injection = null;
-    const isAlias: boolean = typeof(name) === 'string';
-
-    if (name instanceof Function) {
-      const classContainerKeys = Reflect.getOwnMetadata(CONTAINER_KEYS, name);
-
-      classRef = classContainerKeys?.find((c: string) => c === this.containerKey) && name;
-    } else if (isAlias) {
-      classRef = this.getInjectionFromAlias(name);
-    }
+    const classRef = this.getClassRefByName(name);
     
     if (!classRef) {
       throw new Error(`[DEPENDENCY ERROR] CLASS OR ALIAS "${name}" was not registered in container`);
     }
 
-    this.instantiate(classRef as (new (...args: any[]) => Injection), isAlias ? name as string : null);
+    this.instantiate(classRef as (new (...args: any[]) => Injection));
 
     return this.instances[classRef.name] as T;
   }
 
-  private instantiate(Instance: new (...args: any[]) => Injection, alias?: string) {
+  private instantiate(Instance: new (...args: any[]) => Injection) {
     if (this.getInstance(Instance.name)) {
       return;
     }
@@ -84,10 +75,6 @@ export class Container {
       .map((i: AliasInjection) => {
         if (!i) {
           throw new Error(`[DEPENDENCY FAILED] You should check for circular dependencies or non existing classes => ${Instance.name}`)
-        }
-
-        if (i.name === Instance.name || (i.alias && alias === i.name)) {
-          return null;
         }
 
         return this.get<Object>(i.alias ? i.name : i);
@@ -105,6 +92,22 @@ export class Container {
 
   private getInstance(name: string): Object {
     return this.instances[name];
+  }
+
+  private getClassRefByName(name: Function | string): Injection {
+    if (typeof(name) === 'string') {
+      return this.getInjectionFromAlias(name);
+    }
+
+    if (name instanceof Function) {
+      const classContainerKeys = Reflect.getOwnMetadata(CONTAINER_KEYS, name);
+
+      if (classContainerKeys.find((c: string) => c === this.containerKey)) {
+        return name;
+      }
+    }
+
+    return null;
   }
 
   private getInjectionFromAlias(alias: string): Injection {
