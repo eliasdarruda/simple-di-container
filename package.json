@@ -26,12 +26,12 @@
   },
   "author": "eliasdarruda",
   "license": "MIT",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/eliasdarruda/simple-di-container.git"
+    "url": "https://github.com/eliasdarruda/ts-di-container.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "devDependencies": {
     "@types/chai": "^4.2.5",
